@@ -15,6 +15,7 @@
 ~ specific language governing permissions and limitations
 ~ under the License.
 -->
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="org.apache.axis2.context.ConfigurationContext"%>
 <%@ page import="org.wso2.carbon.CarbonConstants"%>
 <%@ page import="org.wso2.carbon.identity.tools.saml.validator.stub.types.ValidatedItemDTO"%>
@@ -40,20 +41,20 @@
 		if($("#samlReqest").val().length == 0)
 		{
 	        CARBON.showWarningDialog(
-	               	"Please provide encoded SAML request.",
+	               	"请提供已编码的SAML请求.",
 	                null, null);
 			return false;
 		}
 		else if($('#isPost').val() == "false" && ($("#samlReqest").val().indexOf('http') == -1 || $("#samlReqest").val().indexOf('SAMLRequest') == -1))
 		{
 	        CARBON.showWarningDialog(
-	               	"SAML Request format is invalid.",
+	               	"SAML 请求格式无效.",
 	                null, null);
 			return false;
 		}
 		return true;
 	}
-	
+
 	function changeVisbilityHelpContent(){
 		if($("#isPost").val() == "false"){
 			$('#helpReqFormat').show();
@@ -106,7 +107,7 @@
 	<%
 		if (isDoValidate && validatedItems != null && validatedItems.length > 0) {
 	%>
-	<h2>Results</h2>
+	<h2>结果</h2>
 	<div id="workArea">
 		<%
 			for (ValidatedItemDTO item : validatedItems) {
@@ -123,14 +124,13 @@
 	<%
 		}
 	%>
-	<h2 style="padding-top: 20px">Validate SAML Request</h2>
+	<h2 style="padding-top: 20px">校验 SAML 请求</h2>
 	<div id="workArea">
 		<form method="POST" action="saml_request_validate.jsp" onsubmit="return doValidation();">
 			<table id="mainTable" class="styledLeft noBorders carbonFormTable">
 				<tbody>
 					<tr>
-						<td style="width: 20%;">Service Provider Initiated Request
-							Binding <span class="required">*</span></td>
+						<td style="width: 20%;">服务提供程序发起的请求绑定 <span class="required">*</span></td>
 						<td><select id="isPost" name="isPost" class="text-box-big" onchange="changeVisbilityHelpContent();">
 								<option value="true" <%=isPost ? "selected" : "" %>>HTTP POST</option>
 								<option value="false" <%=isPost ? "" : "selected" %>>HTTP Redirect</option>
@@ -139,19 +139,19 @@
 					</tr>
 					<tr>
 						<td class="leftCol-small" style="vertical-align: top !important">SAML
-							Request <span class="required">*</span></td>
+							请求 <span class="required">*</span></td>
 						<td style="height: 200px;"><textarea type="text"
 								name="samlReqest" id="samlReqest" class="text-box-big"
 								style="width: 50%; min-height: 180px;" autocomplete="off"><%=(isDoValidate && samlRequest != null) ? Encode.forHtmlContent(samlRequest): ""%></textarea>
-								<div id="helpReqFormat" class="sectionHelp" style="display: none;">SAML Request should be in similar format to 'https://localhost:9443/samlsso?SAMLRequest=jZJdj6owEIb%2FCum9CGIUG9Gg%...'</div>
+								<div id="helpReqFormat" class="sectionHelp" style="display: none;">SAML请求的格式类似于 'https://localhost:9443/samlsso?SAMLRequest=jZJdj6owEIb%2FCum9CGIUG9Gg%...'</div>
 								</td>
 					</tr>
 					<tr>
 						<td class="buttonRow" colspan="2"><input class="button"
-							type="submit" value="Validate"> <input type="button"
+							type="submit" value="校验"> <input type="button"
 							class="button"
 							onclick="javascript:location.href='../admin/index.jsp'"
-							value="Cancel"></td>
+							value="取消"></td>
 					</tr>
 				</tbody>
 			</table>

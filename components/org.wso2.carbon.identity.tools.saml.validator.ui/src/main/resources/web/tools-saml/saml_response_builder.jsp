@@ -15,6 +15,7 @@
 ~ specific language governing permissions and limitations
 ~ under the License.
 -->
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="org.apache.axis2.context.ConfigurationContext"%>
 <%@ page import="org.wso2.carbon.CarbonConstants"%>
 <%@ page import="org.wso2.carbon.identity.tools.saml.validator.stub.types.GeneratedResponseDTO"%>
@@ -40,13 +41,13 @@
 	function doValidation(){
 		if($("#issuer").length == 0 && $("#issuer").val() == null || $("#issuer").val().length == 0){
 	        CARBON.showWarningDialog(
-	               	"Please register at least one SAML2 SSO enabled Service Provider.",
+	               	"请至少注册一个启用了SAML2 SSO的服务提供者.",
 	                null, null);
 			return false;
 		}
 		else if($("#userName").val().length == 0){
 	        CARBON.showWarningDialog(
-	               	"Please provide user name.",
+	               	"请提供用户名.",
 	                null, null);
 			return false;
 		}
@@ -96,14 +97,14 @@
 				%>
 				<div id="workArea">
 					<div style="padding-bottom: 10px;">
-						<div style="font-weight: bold; padding-bottom: 5px;">Building Response Failed</div>
+						<div style="font-weight: bold; padding-bottom: 5px;">创建响应失败</div>
 						<div style="padding-left: 10px; color:#E01212;"><%=Encode.forHtml(responseDTO.getMessage())%></div>
 					</div>
 				</div>
 				<%
 			} else {
 				%>
-					<h2>SAML Response</h2>
+					<h2>SAML 响应</h2>
 						<div id="workArea">
 							<div style="width: 100%;">
 								<div style="width: 100%;"><textarea type="text"
@@ -111,7 +112,7 @@
 								style="width: 99%; height: 250px; background: #FFFFFF;" autocomplete="off" readonly><%=Encode.forHtmlContent(responseDTO.getXmlResponse())%></textarea></div>
 							</div>
 						</div>
-					<h2 style="padding-top: 20px" >Encoded SAML Response</h2>
+					<h2 style="padding-top: 20px" >已编码的 SAML 响应</h2>
 						<div id="workArea">
 							<div style="width: 100%;">
 								<div style="width: 100%;"><textarea type="text"
@@ -125,44 +126,44 @@
 		<%
 			}
 		%>
-	<h2 style="padding-top: 20px">Build SAML Response</h2>
+	<h2 style="padding-top: 20px">构建 SAML 响应</h2>
 	<div id="workArea">
 		<form method="POST" action="saml_response_builder.jsp" onsubmit="return doValidation();">
 			<table id="mainTable" class="styledLeft noBorders carbonFormTable">
 				<tbody>
 					<tr>
-						<td>Issuer <span class="required">*</span></td>
+						<td>发行者 <span class="required">*</span></td>
 						<td>
 							<%
 								if (issuers != null && issuers.length > 0 && issuers[0] != null) {
-							%> 
+							%>
 							<select id="issuer" name="issuer" class="text-box-big">
-							<% for(String issuerItem : issuers){ 
+							<% for(String issuerItem : issuers){
 									if(issuerItem != null) {%>
 									<option value="<%=Encode.forHtmlAttribute(issuerItem)%>" <%=(issuer != null && issuer.equals(issuerItem)) ? "selected" : ""%>><%=Encode.forHtmlContent(issuerItem)%></option>
 									<%
 									}
 								}
- 							%> 
-							</select> 
+ 							%>
+							</select>
 							<%
  								} else {
- 							%> 
- 								There are no SAML2 SSO enabled Service Providers in the system.
+ 							%>
+ 								系统中未发现启用了SAML2 SSO的服务提供者.
  							<%  } %>
  							<input type="hidden" id="buildResponse" name="buildResponse" value="true">
 						</td>
 					</tr>
 					<tr>
-						<td class="leftCol-small">User Name <span class="required">*</span></td>
+						<td class="leftCol-small">用户名 <span class="required">*</span></td>
 						<td><input type="text" id="userName" name="userName" value="<%=userName != null ? Encode.forHtmlAttribute(userName) : ""%>"></td>
 					</tr>
 					<tr>
 						<td class="buttonRow" colspan="2"><input class="button"
-							type="submit" value="Generate"> <input type="button"
+							type="submit" value="生成"> <input type="button"
 							class="button"
 							onclick="javascript:location.href='../admin/index.jsp'"
-							value="Cancel"></td>
+							value="取消"></td>
 					</tr>
 				</tbody>
 			</table>
