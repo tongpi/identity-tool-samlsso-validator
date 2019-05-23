@@ -11,7 +11,7 @@
 	<menus>
 		<menu>
 			<id>tools_saml_menu</id>
-			<i18n-key>SAML</i18n-key>
+			<i18n-key>安全断言标记语言SAML</i18n-key>
 			<i18n-bundle>org.wso2.carbon.identity.tools.saml.validator.ui.i18n.Resources
 			</i18n-bundle>
 			<parent-menu>tools_menu</parent-menu>
@@ -25,7 +25,7 @@
 		</menu>
 		<menu>
 			<id>tools_saml_validator_req_menu</id>
-			<i18n-key>SAML Request Validator</i18n-key>
+			<i18n-key>SAML请求校验器</i18n-key>
 			<i18n-bundle>org.wso2.carbon.identity.tools.saml.validator.ui.i18n.Resources
 			</i18n-bundle>
 			<parent-menu>tools_saml_menu</parent-menu>
@@ -39,7 +39,7 @@
 		</menu>
 		<menu>
 			<id>tools_saml_validator_resp_menu</id>
-			<i18n-key>SAML Response Builder</i18n-key>
+			<i18n-key>SAML响应生成工具</i18n-key>
 			<i18n-bundle>org.wso2.carbon.identity.tools.saml.validator.ui.i18n.Resources
 			</i18n-bundle>
 			<parent-menu>tools_saml_menu</parent-menu>
